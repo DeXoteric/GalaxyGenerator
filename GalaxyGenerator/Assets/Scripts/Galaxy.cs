@@ -12,7 +12,7 @@ namespace GalaxyGenerator
         [SerializeField] private int numberOfStars = 300;
         [SerializeField] [Range(0, 50)] private int minimumRadius = 0;
         [SerializeField] [Range(70, 100)] private int maximumRadius = 100;
-        [SerializeField] [Range(-1999999999, 1999999999)] private int seedNumber = 0;
+        [SerializeField] [Range(-1999999999, 1999999999)] public int seedNumber = 0;
 
         [SerializeField] private float minDistBetweenStars = 2f;
 

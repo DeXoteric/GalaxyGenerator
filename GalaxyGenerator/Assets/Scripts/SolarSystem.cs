@@ -7,13 +7,14 @@ namespace GalaxyGenerator
     {
         public static SolarSystem instance;
 
-        [SerializeField] Button galaxyViewButton;
+        [SerializeField] private Button galaxyViewButton;
 
         private void OnEnable()
         {
             instance = this;
             galaxyViewButton.interactable = false;
         }
+
 
         private void Update()
         {
