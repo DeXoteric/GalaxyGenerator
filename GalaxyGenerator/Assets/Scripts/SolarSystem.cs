@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace GalaxyGenerator
 {
@@ -6,9 +7,12 @@ namespace GalaxyGenerator
     {
         public static SolarSystem instance;
 
+        [SerializeField] Button galaxyViewButton;
+
         private void OnEnable()
         {
             instance = this;
+            galaxyViewButton.interactable = false;
         }
 
         private void Update()
@@ -26,14 +30,9 @@ namespace GalaxyGenerator
             }
         }
 
-       
-
         public void CreateSolarSystem(Star starData)
         {
-            GameObject star = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            star.name = starData.starName;
-            star.transform.position = Vector3.zero;
-            star.transform.SetParent(transform);
+            SpaceObjects.CreateSphereObject(starData.starName, Vector3.zero, transform);
 
             for (int i = 0; i < starData.planetList.Count; i++)
             {
@@ -43,6 +42,20 @@ namespace GalaxyGenerator
 
                 SpaceObjects.CreateSphereObject(planet.planetName, planetPos, this.transform);
             }
+
+            galaxyViewButton.interactable = true;
+        }
+
+        public void DestroySolarSystem()
+        {
+            while (transform.childCount > 0)
+            {
+                Transform go = transform.GetChild(0);
+                go.SetParent(null);
+                Destroy(go.gameObject);
+            }
+
+            galaxyViewButton.interactable = false;
         }
     }
 }

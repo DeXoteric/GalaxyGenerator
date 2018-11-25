@@ -27,6 +27,11 @@ namespace GalaxyGenerator
 
         private void Start()
         {
+            CreateGalaxy();
+        }
+
+        public void CreateGalaxy()
+        {
             Random.InitState(seedNumber);
             starToObjectMap = new Dictionary<Star, GameObject>();
 
