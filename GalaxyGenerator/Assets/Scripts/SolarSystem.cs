@@ -8,6 +8,7 @@ namespace GalaxyGenerator
         public static SolarSystem instance;
 
         [SerializeField] private Button galaxyViewButton;
+        [SerializeField] private GameObject orbitSpritePrefab;
 
         public Vector3 starPosition { get; set; }
 
@@ -47,6 +48,8 @@ namespace GalaxyGenerator
                 Vector3 planetPos = PositionMath.PlanetPosition(i);
 
                 SpaceObjects.CreateSphereObject(planet.planetName, planetPos, this.transform);
+
+                GameObject orbit = SpaceObjects.CreateOrbitPath(orbitSpritePrefab, planet.planetName + " Orbit", i + 1, transform);
             }
 
             galaxyViewButton.interactable = true;

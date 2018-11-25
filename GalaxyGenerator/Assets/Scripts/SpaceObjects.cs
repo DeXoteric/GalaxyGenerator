@@ -12,4 +12,15 @@ public class SpaceObjects
 
         return sphere;
     }
+
+    public static GameObject CreateOrbitPath(GameObject orbitSprite, string name, int orbitNumber, Transform parent = null)
+    {
+        GameObject orbit = GameObject.Instantiate(orbitSprite);
+
+        orbit.name = name;
+        orbit.transform.localScale = orbit.transform.localScale * orbitNumber;
+        orbit.transform.SetParent(parent);
+
+        return orbit;
+    }
 }

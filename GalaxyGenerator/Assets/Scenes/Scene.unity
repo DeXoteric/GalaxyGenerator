@@ -501,6 +501,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   galaxyViewButton: {fileID: 1659538276}
+  orbitSpritePrefab: {fileID: 1239210749974020, guid: b8b0faaef19ab7d478d64bfff6db5372,
+    type: 2}
 --- !u!4 &1378551454
 Transform:
   m_ObjectHideFlags: 0
