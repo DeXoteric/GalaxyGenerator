@@ -143,9 +143,10 @@ MonoBehaviour:
   numberOfStars: 300
   minimumRadius: 50
   maximumRadius: 100
-  minDistBetweenStars: 6
+  seedNumber: -2000000000
+  minDistBetweenStars: 2
   planetTypes:
-  - Barrem
+  - Barren
   - Terran
   - Gas Giant
 --- !u!4 &130003204
@@ -239,7 +240,7 @@ GameObject:
   - component: {fileID: 534669903}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
