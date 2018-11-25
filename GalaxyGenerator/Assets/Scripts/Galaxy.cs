@@ -38,13 +38,13 @@ namespace GalaxyGenerator
                 //Debug.Log("Created " + starData.starName + " with " + starData.numberOfPlanets + " planets");
                 CreatePlanetData(starData);
 
-                Vector3 position = RandomPosition();
+                Vector3 position = PositionMath.RandomPosition(minimumRadius, maximumRadius);
 
                 Collider[] positionCollider = Physics.OverlapSphere(position, minDistBetweenStars);
 
                 if (positionCollider.Length == 0)
                 {
-                    GameObject star = CreateStar(starData, position);
+                    GameObject star = SpaceObjects.CreateSphereObject(starData.starName, position, this.transform);
                     starToObjectMap.Add(starData, star);
                     failCount = 0;
                 }
@@ -60,27 +60,6 @@ namespace GalaxyGenerator
                     break;
                 }
             }
-        }
-
-        // This method creates a sphere object using the built in sphere model in unity
-        private GameObject CreateStar(Star starData, Vector3 position)
-        {
-            GameObject star = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            star.name = starData.starName;
-            star.transform.position = position;
-
-            return star;
-        }
-
-        //This method creates a random polar coordinate then converts and returns it as a Cartesian coordinate
-        private Vector3 RandomPosition()
-        {
-            float distance = Random.Range(minimumRadius, maximumRadius);
-            float angle = Random.Range(0, 2 * Mathf.PI);
-
-            Vector3 position = new Vector3(distance * Mathf.Cos(angle), distance * Mathf.Sin(angle), 0);
-
-            return position;
         }
 
         // This method creates all the planet data for a star
@@ -125,6 +104,16 @@ namespace GalaxyGenerator
             else
             {
                 return null;
+            }
+        }
+
+        public void DestroyGalaxy()
+        {
+            while (transform.childCount > 0)
+            {
+                Transform go = transform.GetChild(0);
+                go.SetParent(null);
+                Destroy(go.gameObject);
             }
         }
     }

@@ -144,7 +144,7 @@ MonoBehaviour:
   minimumRadius: 50
   maximumRadius: 100
   seedNumber: -2000000000
-  minDistBetweenStars: 2
+  minDistBetweenStars: 5
   planetTypes:
   - Barren
   - Terran
