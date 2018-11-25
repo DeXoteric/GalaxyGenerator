@@ -15,7 +15,6 @@ namespace GalaxyGenerator
             galaxyViewButton.interactable = false;
         }
 
-
         private void Update()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -26,6 +25,7 @@ namespace GalaxyGenerator
                 Star star = Galaxy.instance.ReturnStarFromGameObject(hit.transform.gameObject);
                 Debug.Log("This star is called: " + star.starName + "\n" + "It has " + star.numberOfPlanets + " planets");
 
+                Galaxy.instance.galaxyView = false;
                 Galaxy.instance.DestroyGalaxy();
                 CreateSolarSystem(star);
             }

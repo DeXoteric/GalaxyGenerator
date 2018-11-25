@@ -8,10 +8,12 @@ namespace GalaxyGenerator
     {
         public static Galaxy instance;
 
+        public bool galaxyView { get; set; }
+
         // TODO: Have these values import from user settings
         [SerializeField] private int numberOfStars = 300;
-        [SerializeField] [Range(0, 50)] private int minimumRadius = 0;
-        [SerializeField] [Range(70, 100)] private int maximumRadius = 100;
+        [SerializeField] [Range(0, 50)] public int minimumRadius = 0;
+        [SerializeField] [Range(70, 100)] public int maximumRadius = 100;
         [SerializeField] [Range(-1999999999, 1999999999)] public int seedNumber = 0;
 
         [SerializeField] private float minDistBetweenStars = 2f;
@@ -32,6 +34,8 @@ namespace GalaxyGenerator
 
         public void CreateGalaxy()
         {
+            galaxyView = true;
+
             Random.InitState(seedNumber);
             starToObjectMap = new Dictionary<Star, GameObject>();
 
