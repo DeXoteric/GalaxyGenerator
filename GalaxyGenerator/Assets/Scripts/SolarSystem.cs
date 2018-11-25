@@ -9,6 +9,8 @@ namespace GalaxyGenerator
 
         [SerializeField] private Button galaxyViewButton;
 
+        public Vector3 starPosition { get; set; }
+
         private void OnEnable()
         {
             instance = this;
@@ -23,6 +25,7 @@ namespace GalaxyGenerator
             if (Physics.Raycast(ray, out hit) && Input.GetMouseButtonDown(0))
             {
                 Star star = Galaxy.instance.ReturnStarFromGameObject(hit.transform.gameObject);
+                starPosition = hit.transform.position;
                 Debug.Log("This star is called: " + star.starName + "\n" + "It has " + star.numberOfPlanets + " planets");
 
                 Galaxy.instance.galaxyView = false;
@@ -33,6 +36,8 @@ namespace GalaxyGenerator
 
         public void CreateSolarSystem(Star starData)
         {
+            CameraController.instance.SolarSystemCameraSettings();
+
             SpaceObjects.CreateSphereObject(starData.starName, Vector3.zero, transform);
 
             for (int i = 0; i < starData.planetList.Count; i++)
@@ -55,6 +60,9 @@ namespace GalaxyGenerator
                 go.SetParent(null);
                 Destroy(go.gameObject);
             }
+
+            CameraController.instance.GalaxyViewCameraSettings();
+            CameraController.instance.MoveTo(starPosition);
 
             galaxyViewButton.interactable = false;
         }
