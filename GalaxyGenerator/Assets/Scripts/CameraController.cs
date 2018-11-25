@@ -15,6 +15,8 @@ namespace GalaxyGenerator
         private float zoomLevel = 0;
         private bool inverseZoom = false;
 
+        public static Quaternion currentAngle;
+
         private void Awake()
         {
             instance = this;
@@ -35,6 +37,7 @@ namespace GalaxyGenerator
         {
             transform.position = new Vector3(0, 0, -100);
             transform.rotation = Quaternion.Euler(0, 0, 0);
+            currentAngle = transform.rotation;
             zoomLevel = 0.6f;
             Camera.main.orthographicSize = defaultCameraOrthoSize;
         }
@@ -43,6 +46,7 @@ namespace GalaxyGenerator
         {
             transform.position = new Vector3(0, 60, -100);
             transform.rotation = Quaternion.Euler(30, 0, 0);
+            currentAngle = transform.rotation;
             Camera.main.orthographicSize = solarSystemCameraOrthoSize;
         }
 

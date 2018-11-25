@@ -145,6 +145,8 @@ MonoBehaviour:
   maximumRadius: 100
   seedNumber: -2000000000
   minDistBetweenStars: 5
+  selectionIcon: {fileID: 1103513855977250, guid: 414e9ad05e47e294b9e2d12a027ce202,
+    type: 2}
   planetTypes:
   - Barren
   - Terran

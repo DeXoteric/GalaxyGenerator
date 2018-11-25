@@ -23,15 +23,23 @@ namespace GalaxyGenerator
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit) && Input.GetMouseButtonDown(0))
+            if (Physics.Raycast(ray, out hit))
             {
-                Star star = Galaxy.instance.ReturnStarFromGameObject(hit.transform.gameObject);
-                starPosition = hit.transform.position;
-                Debug.Log("This star is called: " + star.starName + "\n" + "It has " + star.numberOfPlanets + " planets");
+                Galaxy.instance.MoveSelectionIcon(hit);
 
-                Galaxy.instance.galaxyView = false;
-                Galaxy.instance.DestroyGalaxy();
-                CreateSolarSystem(star);
+                if (Input.GetMouseButtonDown(0) && Galaxy.instance.galaxyView == true)
+                {
+                    Star star = Galaxy.instance.ReturnStarFromGameObject(hit.transform.gameObject);
+                    starPosition = hit.transform.position;
+                    Debug.Log("This star is called: " + star.starName + "\n" + "It has " + star.numberOfPlanets + " planets");
+
+                    Galaxy.instance.galaxyView = false;
+                    Galaxy.instance.DestroyGalaxy();
+                    CreateSolarSystem(star);
+                }
+            } else
+            {
+                Galaxy.instance.selectionIcon.SetActive(false);
             }
         }
 

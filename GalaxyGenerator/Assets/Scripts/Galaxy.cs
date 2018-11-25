@@ -18,6 +18,8 @@ namespace GalaxyGenerator
 
         [SerializeField] private float minDistBetweenStars = 2f;
 
+        [SerializeField] public GameObject selectionIcon;
+
         public string[] planetTypes = { "Barren", "Terran", "Gas Giant" };
 
         public Dictionary<Star, GameObject> starToObjectMap { get; protected set; }
@@ -29,6 +31,7 @@ namespace GalaxyGenerator
 
         private void Start()
         {
+            CreateSelectionIcon();
             CreateGalaxy();
         }
 
@@ -124,6 +127,20 @@ namespace GalaxyGenerator
                 go.SetParent(null);
                 Destroy(go.gameObject);
             }
+        }
+
+        private void CreateSelectionIcon()
+        {
+            selectionIcon = Instantiate(selectionIcon);
+            selectionIcon.transform.localScale = selectionIcon.transform.localScale * 2.5f;
+            selectionIcon.SetActive(false);
+        }
+
+        public void MoveSelectionIcon(RaycastHit hit)
+        {
+            selectionIcon.SetActive(true);
+            selectionIcon.transform.position = hit.transform.position;
+            selectionIcon.transform.rotation = CameraController.currentAngle;
         }
     }
 }
