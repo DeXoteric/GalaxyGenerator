@@ -141,7 +141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfStars: 300
+  minimumRadius: 50
   maximumRadius: 100
+  minDistBetweenStars: 6
 --- !u!4 &130003204
 Transform:
   m_ObjectHideFlags: 0
